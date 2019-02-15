@@ -1,0 +1,23 @@
+.Container {
+  position: relative;
+  display: flex;
+  flex-flow: row wrap;
+  width: 100%;
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+@media (min-width: 550px) {
+  .Container {
+    width: 85%;
+    padding: 0;
+  }
+}
+
+@media print {
+  .Container {
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+}

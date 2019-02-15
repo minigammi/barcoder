@@ -1,0 +1,90 @@
+.AddButtonContainer {
+  display: block;
+  width: 160px;
+  min-height: 205px;
+  text-align: center;
+  padding-top: 60px;
+}
+
+
+.AddButton {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 3rem;
+  height: 3rem;
+  padding: 0;
+  margin: 0;
+  background-color: white;
+  border: 1px solid var(--color-surface);
+  border-radius: 50%;
+  color: var(--color-primary);
+  font-size: 2rem;
+  line-height: 1;
+  outline: none;
+  overflow: hidden;
+  cursor: pointer;
+  z-index: 1;
+}
+
+.AddButton::-moz-focus-inner {
+  border: none;
+}
+
+.AddButton:before {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  background-color: currentColor;
+  opacity: 0;
+  transition: opacity 0.2s;
+}
+
+/* Ripple */
+.AddButton:after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  border-radius: 50%;
+  padding: 50%;
+  width: 2rem;
+  height: 2rem;
+  background-color: currentColor;
+  opacity: 0;
+  transform: translate(-50%, -50%) scale(1) ;
+  transition: opacity 1s, transform 0.5s;
+}
+
+/* Hover, Focus */
+.AddButton:hover:before {
+  opacity: 0.04;
+}
+
+.AddButton:focus:before {
+  opacity: 0.12;
+}
+
+.AddButton:hover:focus:before {
+  opacity: 0.16;
+}
+
+/* Active */
+.AddButton:active:after {
+  opacity: 0.16;
+  transform: translate(-50%, -50%) scale(0);
+  transition: transform 0s;
+}
+
+
+@media print {
+  .BarcodeSpace,
+  .BarcodeInput,
+  .AddButton {
+    display: none;
+  }
+}

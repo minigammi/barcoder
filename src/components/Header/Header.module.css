@@ -1,0 +1,49 @@
+:root {
+  --header-height: 3.5rem;
+}
+
+.Header {
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  height: var(--header-height);
+  display: flex;
+  flex-flow: row wrap;
+  align-items: center;
+  padding: 0.5rem 1rem;
+  background-color: white;
+  border-bottom: 1px solid var(--color-surface);
+  box-shadow: 0 1px 6px 0 rgba(32,33,36,0.28);
+  z-index: 2 ;
+}
+
+body {
+  margin: var(--header-height) 0 0 0;
+  padding: 1rem 0 0 0;
+}
+
+.HeaderTitle {
+  margin: 0;
+  overflow: hidden;
+  font-size: 1.5rem;
+  font-weight: 300;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.HeaderContent {
+  flex-grow: 1;
+  margin-left: 1.5rem;
+  text-align: right;
+}
+
+@media print {
+  .Header {
+    display: none;
+  }
+
+  body {
+    margin: 0;
+  }
+}
