@@ -2,7 +2,9 @@
   "name": "barcoder",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://minigammi.github.io/barcoder",
   "dependencies": {
+    "gh-pages": "^2.0.1",
     "jsbarcode": "4.0.0-alpha.5",
     "prop-types": "15.7.2",
     "react": "16.8.2",
@@ -10,6 +12,8 @@
     "react-scripts": "2.1.5"
   },
   "scripts": {
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
