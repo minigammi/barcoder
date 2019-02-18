@@ -2,14 +2,14 @@
  * Barcode.
  */
 
-import React, { useRef, useEffect } from 'react';
+import React, { useRef, useEffect, useState, memo } from 'react';
 import PropTypes from 'prop-types';
 import JsBarcode from 'jsbarcode';
 import jsBarcodeOptions from './jsBarcode.options';
 import styles from './Barcode.module.css';
 
 
-function Space() {
+function Space({ children }) {
   const margin = 16;
   const height = jsBarcodeOptions.height
     + (jsBarcodeOptions.margins * 2)
@@ -18,9 +18,15 @@ function Space() {
 
   return (
     <div style={{ height, margin }} className={styles.BarcodeSpace}>
-      empty
+      {children}
     </div>
   );
+}
+
+function getSvgStyle(showSvgNode) {
+  return {
+    display: showSvgNode ? 'block' : 'none',
+  };
 }
 
 
@@ -35,12 +41,22 @@ const propTypes = {
 
 function Barcode(props) {
   const { barcode, onChange, onRemove } = props;
+
   const svgRef = useRef(null);
-  const showSvgNode = !svgRef || (svgRef && barcode.code);
+  const [error, setError] = useState('');
+
+  const showSvgNode = !error && (!svgRef || (svgRef && barcode.code));
+
   useEffect(
     () => {
       if (barcode.code) {
-        JsBarcode(svgRef.current, barcode.code, jsBarcodeOptions)
+        try {
+          JsBarcode(svgRef.current, barcode.code, jsBarcodeOptions);
+          if (error) setError('');
+        }
+        catch (e) {
+          setError('invalid input')
+        }
       }
     },
     [barcode]
@@ -56,8 +72,12 @@ function Barcode(props) {
       >
         +
       </button>
-      {showSvgNode && <svg ref={svgRef} className={styles.BarcodeSvg}/>}
-      {!showSvgNode && <Space />}
+      <svg
+        ref={svgRef}
+        className={styles.BarcodeSvg}
+        style={getSvgStyle(showSvgNode)}
+      />
+      {!showSvgNode && <Space>{error || 'empty'}</Space>}
       <label className={styles.BarcodeInput}>
         <input
           type="text"
@@ -75,4 +95,8 @@ function Barcode(props) {
 Barcode.propTypes = propTypes;
 
 
-export default Barcode;
+function compareProps(prev, next) {
+  return prev.barcode === next.barcode;
+}
+
+export default memo(Barcode, compareProps);
