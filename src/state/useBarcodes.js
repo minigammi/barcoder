@@ -8,6 +8,7 @@ import { useReducer, useEffect } from 'react';
  * @typedef {Object} BarcodeType
  * @property {number} id
  * @property {string} code
+ * @property {string} comment
  */
 
 const storageKey = 'barcodes';
@@ -30,6 +31,7 @@ function createNewBarcode() {
   return {
     id: Date.now(),
     code: '',
+    comment: '',
   };
 }
 

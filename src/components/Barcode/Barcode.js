@@ -84,7 +84,19 @@ function Barcode(props) {
           id={`bci_${barcode.id}`}
           value={barcode.code}
           onChange={e => onChange({ ...barcode, code: e.target.value })}
-          placeholder=" "
+          maxLength={25}
+          placeholder="Code..."
+        />
+        <span />
+      </label>
+      <label className={`${styles.BarcodeInput} ${styles.BarcodeComment}`}>
+        <input
+          type="text"
+          id={`bcc_${barcode.id}`}
+          value={barcode.comment}
+          onChange={e => onChange({ ...barcode, comment: e.target.value })}
+          maxLength={25}
+          placeholder="Comment..."
         />
         <span />
       </label>

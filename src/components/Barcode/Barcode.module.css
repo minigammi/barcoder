@@ -112,7 +112,7 @@
   display: block;
   margin: 0;
   border: none;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.6);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
   padding: 0 0 0.25rem;
   width: 100%;
   color: rgba(0, 0, 0, 0.87);
@@ -122,6 +122,11 @@
   caret-color: var(--color-primary);
   transition: border-bottom 0.2s, background-color 0.2s;
   outline: none;
+}
+
+.BarcodeInput > input::placeholder {
+  transition: color 0.2s;
+  color: rgba(0, 0, 0, 0.2);
 }
 
 /* Underline */
@@ -141,7 +146,11 @@
 
 /* Hover */
 .BarcodeInput > input:hover {
-  border-bottom-color: rgba(0, 0, 0, 0.87);
+  border-bottom-color: rgba(0, 0, 0, 0.4);
+}
+
+.BarcodeInput > input:hover::placeholder {
+  color: rgba(0, 0, 0, 0.4);
 }
 
 /* Focus */
@@ -160,11 +169,25 @@
   }
 }
 
-
 @media print {
   .BarcodeSpace,
   .BarcodeInput,
   .BarcodeRemove {
     display: none;
+  }
+
+  .BarcodeComment {
+    display: block !important;
+    margin-top: 0 !important;
+  }
+
+  .BarcodeComment > input {
+    display: block !important;
+    width: 100% !important;
+    margin: 0 auto !important;
+    padding: 0 !important;
+    border: 0 !important;
+    text-align: center !important;
+    font-size: 1.25rem !important;
   }
 }
