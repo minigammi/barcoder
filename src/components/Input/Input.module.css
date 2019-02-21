@@ -1,0 +1,120 @@
+.Input {
+  position: relative;
+  font-size: 1rem;
+  line-height: 1.5;
+  overflow: hidden;
+}
+
+.Input + .Input {
+  margin-top: 0.5rem;
+}
+
+/* Input, Textarea */
+.Input > input {
+  display: block;
+  margin: 0;
+  border: none;
+  border-top: solid 1rem transparent;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  padding: 0 0 0.25rem;
+  width: 100%;
+  color: rgba(0, 0, 0, 0.87);
+  background-color: transparent;
+  box-shadow: none; /* Firefox */
+  font-size: 1rem;
+  line-height: 1.25rem;
+  caret-color: var(--color-primary);
+  transition: border-bottom 0.2s, background-color 0.2s;
+  outline: none;
+}
+
+/* Span */
+.Input > input + span {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: block;
+  padding: calc(0.3rem - 2px) 0 0;
+  color: rgba(0, 0, 0, 0.6);
+  font-size: 0.75rem;
+  line-height: calc(0.4rem + 2px);
+  pointer-events: none;
+  transition: color 0.2s, font-size 0.2s, line-height 0.2s;
+}
+
+/* Underline */
+.Input > input + span:after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  display: block;
+  width: 100%;
+  height: 2px;
+  background-color: var(--color-primary);
+  transform-origin: bottom center;
+  transform: scaleX(0);
+  transition: transform 0.2s;
+}
+
+/* Hover */
+.Input > input:hover {
+  border-bottom-color: rgba(0, 0, 0, 0.4);
+}
+
+/* Placeholder-shown */
+.Input > input:not(:focus):placeholder-shown + span {
+  font-size: inherit;
+  line-height: 3rem;
+}
+
+/* Focus */
+.Input > input:focus + span {
+  color: var(--color-primary);
+}
+
+.Input > input:focus + span:before {
+  opacity: 0.12;
+}
+
+.Input > input:focus + span:after {
+  transform: scale(1);
+}
+
+/* Faster transition in Safari for less noticable fractional font-size issue */
+@media not all and (min-resolution:.001dpcm) {
+  @supports (-webkit-appearance:none) {
+    .Input > input,
+    .Input > input + span,
+    .Input > input + span::after {
+      transition-duration: 0.1s;
+    }
+  }
+}
+
+@media print {
+  .Input > input:placeholder-shown,
+  .Input > input:placeholder-shown + span,
+  .Input > input + span,
+  .Input > input + span:before,
+  .Input > input + span:after {
+    display: none;
+  }
+
+  .Input.Printable {
+    display: block !important;
+    margin-top: 0 !important;
+  }
+
+  .Input.Printable > input {
+    display: block !important;
+    width: 100% !important;
+    margin: 0 auto !important;
+    padding: 0 !important;
+    border: 0 !important;
+    text-align: center !important;
+    font-size: 1.25rem !important;
+  }
+}
