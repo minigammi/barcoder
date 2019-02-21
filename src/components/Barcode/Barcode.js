@@ -4,7 +4,9 @@
 
 import React, { useRef, useEffect, useState, memo } from 'react';
 import PropTypes from 'prop-types';
+import classNames from 'classnames';
 import JsBarcode from 'jsbarcode';
+import Input from '../Input';
 import jsBarcodeOptions from './jsBarcode.options';
 import styles from './Barcode.module.css';
 
@@ -62,8 +64,10 @@ function Barcode(props) {
     [barcode]
   );
 
+  const className = classNames(styles.Barcode, !showSvgNode && styles.Hidden);
+
   return (
-    <div className={styles.Barcode}>
+    <div className={className}>
       <button
         className={styles.BarcodeRemove}
         onClick={() => onRemove(barcode)}
@@ -78,28 +82,20 @@ function Barcode(props) {
         style={getSvgStyle(showSvgNode)}
       />
       {!showSvgNode && <Space>{error || 'empty'}</Space>}
-      <label className={styles.BarcodeInput}>
-        <input
-          type="text"
-          id={`bci_${barcode.id}`}
-          value={barcode.code}
-          onChange={e => onChange({ ...barcode, code: e.target.value })}
-          maxLength={25}
-          placeholder="Code..."
-        />
-        <span />
-      </label>
-      <label className={`${styles.BarcodeInput} ${styles.BarcodeComment}`}>
-        <input
-          type="text"
-          id={`bcc_${barcode.id}`}
-          value={barcode.comment}
-          onChange={e => onChange({ ...barcode, comment: e.target.value })}
-          maxLength={25}
-          placeholder="Comment..."
-        />
-        <span />
-      </label>
+      <Input
+        className={styles.BarcodeCodeInput}
+        id={`bci_${barcode.id}`}
+        value={barcode.code}
+        onChange={e => onChange({ ...barcode, code: e.target.value })}
+        label="Code"
+      />
+      <Input
+        id={`bcc_${barcode.id}`}
+        value={barcode.comment}
+        onChange={e => onChange({ ...barcode, comment: e.target.value })}
+        label="Comment"
+        visibleOnPrint
+      />
     </div>
   );
 }
