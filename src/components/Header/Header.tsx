@@ -2,15 +2,15 @@
  * Header.
  */
 
-import React from 'react';
+import React, { ReactElement, ReactNode } from 'react';
 import PropTypes from 'prop-types';
 import styles from './Header.module.css';
 
-const propTypes = {
-  children: PropTypes.node,
+type PropTypes = {
+  children: ReactNode,
 };
 
-function Header(props) {
+function Header(props: PropTypes): ReactElement {
   const { children } = props;
 
   return (
@@ -20,7 +20,5 @@ function Header(props) {
     </div>
   );
 }
-
-Header.propTypes = propTypes;
 
 export default Header;

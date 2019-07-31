@@ -2,22 +2,20 @@
  * Container.
  */
 
-import React from 'react';
+import React, { ReactElement, ReactNode } from 'react';
 import PropTypes from 'prop-types';
 import styles from './Container.module.css';
 
-const propTypes = {
-  children: PropTypes.node,
+type PropTypes = {
+  children: ReactNode,
 };
 
-function Container({ children }) {
+function Container({ children }: PropTypes): ReactElement {
   return (
     <div className={styles.Container}>
       {children}
     </div>
   );
 }
-
-Container.propTypes = propTypes;
 
 export default Container;

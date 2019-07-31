@@ -2,21 +2,21 @@
  * Button.
  */
 
-import React, { Fragment } from 'react';
+import React, { Fragment, ReactNode, ReactElement, MouseEvent } from 'react';
 import PropTypes from 'prop-types';
 import styles from './Button.module.css';
 
-const propTypes = {
-  type: PropTypes.string,
-  children: PropTypes.node,
-  onClick: PropTypes.func,
+type PropTypes = {
+  type?: 'button' | 'submit',
+  children: ReactNode,
+  onClick?: (event: MouseEvent) => void,
 };
 
 const defaultProps = {
   type: 'button',
 };
 
-function Button(props) {
+function Button(props: PropTypes): ReactElement {
   const {
     children,
     type,
@@ -37,7 +37,6 @@ function Button(props) {
   );
 }
 
-Button.propTypes = propTypes;
 Button.defaultProps = defaultProps;
 
 export default Button;

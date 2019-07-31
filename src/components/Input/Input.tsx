@@ -2,19 +2,19 @@
  * Input.
  */
 
-import React, { memo } from 'react';
+import React, { ChangeEvent, memo, ReactNode } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import styles from './Input.module.css';
 
-const propTypes = {
-  value: PropTypes.string,
-  id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-  name: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
-  label: PropTypes.node,
-  onChange: PropTypes.func.isRequired,
-  className: PropTypes.string,
-  visibleOnPrint: PropTypes.bool,
+type PropTypes = {
+  value?: string,
+  id: string,
+  name?: string,
+  label: ReactNode,
+  onChange: (event: ChangeEvent<HTMLInputElement>) => void,
+  className?: string,
+  visibleOnPrint: boolean,
 };
 
 const defaultProps = {
@@ -22,7 +22,7 @@ const defaultProps = {
   visibleOnPrint: false,
 };
 
-function Input(props) {
+function Input(props: PropTypes) {
   const {
     value,
     id,
@@ -55,7 +55,6 @@ function Input(props) {
   );
 }
 
-Input.propTypes = propTypes;
 Input.defaultProps = defaultProps;
 
 export default memo(Input);

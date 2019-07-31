@@ -2,15 +2,15 @@
  * AddButton.
  */
 
-import React, { memo } from 'react';
+import React, { MouseEvent, ReactElement } from 'react';
 import PropTypes from 'prop-types';
 import styles from './AddButton.module.css';
 
-const propTypes = {
-  onClick: PropTypes.func.isRequired,
+type PropTypes = {
+  onClick: (event: MouseEvent) => void,
 };
 
-function AddButton(props) {
+function AddButton(props: PropTypes): ReactElement {
   const { onClick } = props;
   return (
     <div className={styles.AddButtonContainer}>
@@ -26,6 +26,4 @@ function AddButton(props) {
   );
 }
 
-AddButton.propTypes = propTypes;
-
-export default memo(AddButton, () => true);
+export default AddButton;

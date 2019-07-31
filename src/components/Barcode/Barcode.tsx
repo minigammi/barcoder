@@ -2,16 +2,17 @@
  * Barcode.
  */
 
-import React, { useRef, useEffect, useState, memo } from 'react';
+import React, { useRef, useEffect, useState, memo, ReactNode, ReactElement } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import JsBarcode from 'jsbarcode';
 import Input from '../Input';
 import jsBarcodeOptions from './jsBarcode.options';
 import styles from './Barcode.module.css';
+import { Barcode as BarcodeType } from '../../state/useBarcodes';
 
 
-function Space({ children }) {
+function Space({ children }: { children: ReactNode }): ReactElement {
   const margin = 16;
   const height = jsBarcodeOptions.height
     + (jsBarcodeOptions.margins * 2)
@@ -25,44 +26,37 @@ function Space({ children }) {
   );
 }
 
-function getSvgStyle(showSvgNode) {
+function getSvgStyle(showSvgNode: boolean): { display: string } {
   return {
     display: showSvgNode ? 'block' : 'none',
   };
 }
 
 
-const propTypes = {
-  barcode: PropTypes.shape({
-    id: PropTypes.number.isRequired,
-    code: PropTypes.string,
-  }).isRequired,
-  onChange: PropTypes.func.isRequired,
-  onRemove: PropTypes.func.isRequired,
+type PropTypes = {
+  barcode: BarcodeType,
+  onChange: (barcode: BarcodeType) => void,
+  onRemove: (barcode: BarcodeType) => void,
 };
 
-function Barcode(props) {
+function Barcode(props: PropTypes): ReactElement {
   const { barcode, onChange, onRemove } = props;
 
   const svgRef = useRef(null);
   const [error, setError] = useState('');
 
-  const showSvgNode = !error && (!svgRef || (svgRef && barcode.code));
+  const showSvgNode = !error && (!svgRef || (svgRef && !!barcode.code));
 
-  useEffect(
-    () => {
-      if (barcode.code) {
-        try {
-          JsBarcode(svgRef.current, barcode.code, jsBarcodeOptions);
-          if (error) setError('');
-        }
-        catch (e) {
-          setError('invalid input')
-        }
+  useEffect(() => {
+    if (barcode.code) {
+      try {
+        JsBarcode(svgRef.current, barcode.code, jsBarcodeOptions);
+        if (error) setError('');
+      } catch (e) {
+        setError('invalid input')
       }
-    },
-    [barcode]
-  );
+    }
+  }, [barcode]);
 
   const className = classNames(styles.Barcode, !showSvgNode && styles.Hidden);
 
@@ -100,10 +94,8 @@ function Barcode(props) {
   );
 }
 
-Barcode.propTypes = propTypes;
 
-
-function compareProps(prev, next) {
+function compareProps(prev: PropTypes, next: PropTypes) {
   return prev.barcode === next.barcode;
 }
 
