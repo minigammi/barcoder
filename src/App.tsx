@@ -11,14 +11,19 @@ import Barcode from './components/Barcode';
 import AddButton from './components/AddButton';
 
 function App(): ReactElement {
-  const { barcodes, actions } = useBarcodes();
+  const { barcodes, actions, projectIndex, setProjectIndex } = useBarcodes();
 
   return (
     <Fragment>
       <Header>
         <Button onClick={actions.clear}>Clear</Button>
-        <Button onClick={() => window.print()}>Print</Button>
+        <Button primary onClick={() => window.print()}>Print</Button>
       </Header>
+      <Container>
+        <Button primary={projectIndex === 0} onClick={() => setProjectIndex(0)}>1</Button>
+        <Button primary={projectIndex === 1} onClick={() => setProjectIndex(1)}>2</Button>
+        <Button primary={projectIndex === 2} onClick={() => setProjectIndex(2)}>3</Button>
+      </Container>
       <Container>
         {barcodes.map(barcode => (
           <Barcode
@@ -28,8 +33,8 @@ function App(): ReactElement {
             onRemove={actions.remove}
           />
         ))}
-        <AddButton onClick={actions.add} />
       </Container>
+      <AddButton onClick={actions.add} />
     </Fragment>
   );
 }

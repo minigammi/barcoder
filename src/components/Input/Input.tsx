@@ -12,9 +12,9 @@ type PropTypes = {
   id: string,
   name?: string,
   label: ReactNode,
-  onChange: (event: ChangeEvent<HTMLInputElement>) => void,
+  onChange?: (event: ChangeEvent<HTMLInputElement>) => void,
   className?: string,
-  visibleOnPrint: boolean,
+  visibleOnPrint?: boolean,
 };
 
 const defaultProps = {

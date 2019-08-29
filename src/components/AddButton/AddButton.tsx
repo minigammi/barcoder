@@ -20,6 +20,7 @@ function AddButton(props: PropTypes): ReactElement {
         className={`${styles.AddButton} ${circleButtonStyles.CircleButton}`}
         onClick={onClick}
         title="Add barcode"
+        primary
       >
         +
       </Button>

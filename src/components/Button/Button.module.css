@@ -53,16 +53,20 @@
 }
 
 /* Hover, Focus */
+.Button:focus {
+  box-shadow: 0 0 0.125rem 0.06rem var(--color-primary);
+}
+
 .Button:hover:before {
-  opacity: 0.04;
+  opacity: 0.08;
 }
 
 .Button:focus:before {
-  opacity: 0.12;
+  opacity: 0.16;
 }
 
 .Button:hover:focus:before {
-  opacity: 0.16;
+  opacity: 0.24;
 }
 
 /* Active */
@@ -70,4 +74,16 @@
   opacity: 0.16;
   transform: translate(-50%, -50%) scale(0);
   transition: transform 0s;
+}
+
+/* Primary */
+.ButtonPrimary {
+  background-color: var(--color-primary);
+  border: 1px solid var(--color-primary);
+  color: white;
+}
+
+.ButtonPrimary:before,
+.ButtonPrimary:after {
+  background-color: white;
 }

@@ -13,10 +13,12 @@ type PropTypes = {
   children: ReactNode,
   onClick?: (event: MouseEvent) => void,
   className?: string,
+  primary?: boolean,
 };
 
 const defaultProps = {
   type: 'button',
+  primary: false,
 };
 
 function Button(props: PropTypes): ReactElement {
@@ -26,6 +28,7 @@ function Button(props: PropTypes): ReactElement {
     title,
     onClick,
     className,
+    primary,
   } = props;
 
   return (
@@ -33,7 +36,7 @@ function Button(props: PropTypes): ReactElement {
       <button
         type={type}
         onClick={onClick}
-        className={classNames(styles.Button, className)}
+        className={classNames(styles.Button, primary && styles.ButtonPrimary, className)}
         title={title}
       >
         {children}
