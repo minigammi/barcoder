@@ -58,7 +58,7 @@ function Barcode(props: PropTypes): ReactElement {
         setError('invalid input')
       }
     }
-  }, [barcode]);
+  }, [barcode, error]);
 
   const className = classNames(styles.Barcode, !showSvgNode && styles.Hidden);
 
