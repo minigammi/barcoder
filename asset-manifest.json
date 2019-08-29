@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/barcoder/static/css/main.6bbb3b13.chunk.css",
-    "main.js": "/barcoder/static/js/main.5238f2d3.chunk.js",
-    "main.js.map": "/barcoder/static/js/main.5238f2d3.chunk.js.map",
+    "main.css": "/barcoder/static/css/main.5bc9e556.chunk.css",
+    "main.js": "/barcoder/static/js/main.509c37ce.chunk.js",
+    "main.js.map": "/barcoder/static/js/main.509c37ce.chunk.js.map",
     "runtime~main.js": "/barcoder/static/js/runtime~main.94d2caeb.js",
     "runtime~main.js.map": "/barcoder/static/js/runtime~main.94d2caeb.js.map",
-    "static/js/2.9115cd25.chunk.js": "/barcoder/static/js/2.9115cd25.chunk.js",
-    "static/js/2.9115cd25.chunk.js.map": "/barcoder/static/js/2.9115cd25.chunk.js.map",
+    "static/js/2.f8770a2a.chunk.js": "/barcoder/static/js/2.f8770a2a.chunk.js",
+    "static/js/2.f8770a2a.chunk.js.map": "/barcoder/static/js/2.f8770a2a.chunk.js.map",
     "index.html": "/barcoder/index.html",
-    "precache-manifest.a8e599a17d743e9231c713fc65feb0a6.js": "/barcoder/precache-manifest.a8e599a17d743e9231c713fc65feb0a6.js",
+    "precache-manifest.57dc76c5dedbcc19d3e39b9c70947f66.js": "/barcoder/precache-manifest.57dc76c5dedbcc19d3e39b9c70947f66.js",
     "service-worker.js": "/barcoder/service-worker.js",
-    "static/css/main.6bbb3b13.chunk.css.map": "/barcoder/static/css/main.6bbb3b13.chunk.css.map"
+    "static/css/main.5bc9e556.chunk.css.map": "/barcoder/static/css/main.5bc9e556.chunk.css.map"
   }
 }
