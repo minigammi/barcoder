@@ -1,20 +1,20 @@
 .Button {
   position: relative;
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   margin: 0;
-  padding: 1px 1rem 0;
+  padding: 0;
   min-width: 4rem;
   height: 2.25rem;
   background-color: white;
   border: 1px solid var(--color-surface);
   border-radius: 0.25rem;
-  vertical-align: middle;
-  text-align: center;
   text-overflow: ellipsis;
   text-transform: uppercase;
   color: var(--color-primary);
   font-weight: 600;
-  line-height: calc(2.25rem - 2px);
+  line-height: 1;
   outline: none;
   overflow: hidden;
   cursor: pointer;

@@ -7,9 +7,11 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import JsBarcode from 'jsbarcode';
 import Input from '../Input';
+import Button from '../Button';
 import jsBarcodeOptions from './jsBarcode.options';
 import styles from './Barcode.module.css';
 import { Barcode as BarcodeType } from '../../state/useBarcodes';
+import circleButtonStyles from '../../styles/CircleButton.module.css';
 
 
 function Space({ children }: { children: ReactNode }): ReactElement {
@@ -62,14 +64,14 @@ function Barcode(props: PropTypes): ReactElement {
 
   return (
     <div className={className}>
-      <button
-        className={styles.BarcodeRemove}
+      <Button
+        className={`${styles.BarcodeRemove} ${circleButtonStyles.CircleButton}`}
         onClick={() => onRemove(barcode)}
         type="button"
         title="Remove barcode"
       >
         +
-      </button>
+      </Button>
       <svg
         ref={svgRef}
         className={styles.BarcodeSvg}

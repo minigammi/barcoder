@@ -4,12 +4,15 @@
 
 import React, { Fragment, ReactNode, ReactElement, MouseEvent } from 'react';
 import PropTypes from 'prop-types';
+import classNames from 'classnames';
 import styles from './Button.module.css';
 
 type PropTypes = {
   type?: 'button' | 'submit',
+  title?: string,
   children: ReactNode,
   onClick?: (event: MouseEvent) => void,
+  className?: string,
 };
 
 const defaultProps = {
@@ -20,7 +23,9 @@ function Button(props: PropTypes): ReactElement {
   const {
     children,
     type,
+    title,
     onClick,
+    className,
   } = props;
 
   return (
@@ -28,7 +33,8 @@ function Button(props: PropTypes): ReactElement {
       <button
         type={type}
         onClick={onClick}
-        className={styles.Button}
+        className={classNames(styles.Button, className)}
+        title={title}
       >
         {children}
       </button>

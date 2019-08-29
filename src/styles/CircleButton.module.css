@@ -1,0 +1,8 @@
+.CircleButton {
+    min-width: auto;
+    border: 0;
+    border-radius: 50%;
+    font-size: 2rem;
+    font-weight: 400;
+    z-index: 1;
+}

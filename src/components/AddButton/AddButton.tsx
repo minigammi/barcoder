@@ -4,6 +4,8 @@
 
 import React, { MouseEvent, ReactElement } from 'react';
 import PropTypes from 'prop-types';
+import Button from '../Button';
+import circleButtonStyles from '../../styles/CircleButton.module.css';
 import styles from './AddButton.module.css';
 
 type PropTypes = {
@@ -14,14 +16,13 @@ function AddButton(props: PropTypes): ReactElement {
   const { onClick } = props;
   return (
     <div className={styles.AddButtonContainer}>
-      <button
-        className={styles.AddButton}
+      <Button
+        className={`${styles.AddButton} ${circleButtonStyles.CircleButton}`}
         onClick={onClick}
-        type="button"
         title="Add barcode"
       >
         +
-      </button>
+      </Button>
     </div>
   );
 }
