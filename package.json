@@ -1,7 +1,9 @@
 {
   "name": "barcoder",
   "version": "0.1.2",
-  "private": true,
+  "license": "MIT",
+  "author": "Ivan Olkov (https://github.com/minigammi)",
+  "repository": "github:minigammi/barcoder",
   "homepage": "https://minigammi.github.io/barcoder",
   "dependencies": {
     "@types/classnames": "2.2.9",
@@ -32,7 +34,7 @@
   "browserslist": [
     ">0.2%",
     "not dead",
-    "not ie <= 11",
+    "not ie",
     "not op_mini all"
   ]
 }
