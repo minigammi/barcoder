@@ -2,15 +2,15 @@
  * Barcode.
  */
 
-import React, { useRef, useEffect, useState, memo, ReactNode, ReactElement } from 'react';
-import PropTypes from 'prop-types';
+import React, { useRef, useEffect, useState, ReactNode, ReactElement } from 'react';
+import { observer } from 'mobx-react';
 import classNames from 'classnames';
 import JsBarcode from 'jsbarcode';
+import BarcodeModel from '../../models/Barcode';
 import Input from '../Input';
 import Button from '../Button';
 import jsBarcodeOptions from './jsBarcode.options';
 import styles from './Barcode.module.css';
-import { Barcode as BarcodeType } from '../../state/useBarcodes';
 import circleButtonStyles from '../../styles/CircleButton.module.css';
 
 
@@ -36,13 +36,12 @@ function getSvgStyle(showSvgNode: boolean): { display: string } {
 
 
 type PropTypes = {
-  barcode: BarcodeType,
-  onChange: (barcode: BarcodeType) => void,
-  onRemove: (barcode: BarcodeType) => void,
+  barcode: BarcodeModel,
+  onRemove: (barcode: BarcodeModel) => void,
 };
 
 function Barcode(props: PropTypes): ReactElement {
-  const { barcode, onChange, onRemove } = props;
+  const { barcode, onRemove } = props;
 
   const svgRef = useRef(null);
   const [error, setError] = useState('');
@@ -58,7 +57,7 @@ function Barcode(props: PropTypes): ReactElement {
         setError('invalid input')
       }
     }
-  }, [barcode, error]);
+  }, [barcode.code, error]);
 
   const className = classNames(styles.Barcode, !showSvgNode && styles.Hidden);
 
@@ -82,13 +81,13 @@ function Barcode(props: PropTypes): ReactElement {
         className={styles.BarcodeCodeInput}
         id={`bci_${barcode.id}`}
         value={barcode.code}
-        onChange={e => onChange({ ...barcode, code: e.target.value })}
+        onChange={e => barcode.code = e.target.value}
         label="Code"
       />
       <Input
         id={`bcc_${barcode.id}`}
         value={barcode.comment}
-        onChange={e => onChange({ ...barcode, comment: e.target.value })}
+        onChange={e => barcode.comment = e.target.value}
         label="Comment"
         visibleOnPrint
       />
@@ -96,9 +95,4 @@ function Barcode(props: PropTypes): ReactElement {
   );
 }
 
-
-function compareProps(prev: PropTypes, next: PropTypes) {
-  return prev.barcode === next.barcode;
-}
-
-export default memo(Barcode, compareProps);
+export default observer(Barcode);

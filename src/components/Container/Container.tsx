@@ -3,7 +3,6 @@
  */
 
 import React, { ReactElement, ReactNode } from 'react';
-import PropTypes from 'prop-types';
 import styles from './Container.module.css';
 
 type PropTypes = {

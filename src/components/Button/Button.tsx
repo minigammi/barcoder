@@ -2,8 +2,7 @@
  * Button.
  */
 
-import React, { Fragment, ReactNode, ReactElement, MouseEvent } from 'react';
-import PropTypes from 'prop-types';
+import React, { ReactNode, ReactElement, MouseEvent } from 'react';
 import classNames from 'classnames';
 import styles from './Button.module.css';
 
@@ -32,7 +31,7 @@ function Button(props: PropTypes): ReactElement {
   } = props;
 
   return (
-    <Fragment>
+    <>
       <button
         type={type}
         onClick={onClick}
@@ -42,7 +41,7 @@ function Button(props: PropTypes): ReactElement {
         {children}
       </button>
       {' '}
-    </Fragment>
+    </>
   );
 }
 

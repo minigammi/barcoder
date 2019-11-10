@@ -3,7 +3,6 @@
  */
 
 import React, { ReactElement, ReactNode } from 'react';
-import PropTypes from 'prop-types';
 import styles from './Header.module.css';
 
 type PropTypes = {

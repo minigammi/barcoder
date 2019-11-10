@@ -3,7 +3,6 @@
  */
 
 import React, { MouseEvent, ReactElement } from 'react';
-import PropTypes from 'prop-types';
 import Button from '../Button';
 import circleButtonStyles from '../../styles/CircleButton.module.css';
 import styles from './AddButton.module.css';

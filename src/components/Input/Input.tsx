@@ -3,7 +3,6 @@
  */
 
 import React, { ChangeEvent, memo, ReactNode } from 'react';
-import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import styles from './Input.module.css';
 

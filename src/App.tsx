@@ -2,41 +2,54 @@
  * App.
  */
 
-import React, { Fragment, ReactElement } from 'react';
-import useBarcodes from './state/useBarcodes';
+import React, { ReactElement } from 'react';
+import { observer } from 'mobx-react';
+import ProjectsList from './models/ProjectsList';
+import AddButton from './components/AddButton';
+import Barcode from './components/Barcode';
 import Button from './components/Button';
 import Container from './components/Container';
 import Header from './components/Header';
-import Barcode from './components/Barcode';
-import AddButton from './components/AddButton';
+import ProjectsMenu from './components/ProjectsMenu';
 
-function App(): ReactElement {
-  const { barcodes, actions, projectIndex, setProjectIndex } = useBarcodes();
+type PropTypes = {
+  projectsList: ProjectsList
+}
+
+function App(props: PropTypes): ReactElement {
+  const { projectsList } = props;
 
   return (
-    <Fragment>
+    <>
       <Header>
-        <Button onClick={actions.clear}>Clear</Button>
+        <Button onClick={projectsList.selectedProject.clear}>Clear</Button>
         <Button primary onClick={() => window.print()}>Print</Button>
       </Header>
       <Container>
-        <Button primary={projectIndex === 0} onClick={() => setProjectIndex(0)}>1</Button>
-        <Button primary={projectIndex === 1} onClick={() => setProjectIndex(1)}>2</Button>
-        <Button primary={projectIndex === 2} onClick={() => setProjectIndex(2)}>3</Button>
+        <ProjectsMenu>
+          {projectsList.list.map((project, index) => (
+            <Button
+              key={index}
+              primary={index === projectsList.selectedIndex}
+              onClick={() => projectsList.selectedIndex = index}
+            >
+              {index + 1}
+            </Button>
+          ))}
+        </ProjectsMenu>
       </Container>
       <Container>
-        {barcodes.map(barcode => (
+        {projectsList.selectedProject.barcodes.map(barcode => (
           <Barcode
             key={barcode.id}
             barcode={barcode}
-            onChange={actions.change}
-            onRemove={actions.remove}
+            onRemove={() => projectsList.selectedProject.removeBarcode(barcode)}
           />
         ))}
       </Container>
-      <AddButton onClick={actions.add} />
-    </Fragment>
+      <AddButton onClick={projectsList.selectedProject.addBarcode}/>
+    </>
   );
 }
 
-export default App;
+export default observer(App);

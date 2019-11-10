@@ -17,7 +17,7 @@ type ExtendedOptions = BaseOptions & {
 const jsBarcodeOptions: ExtendedOptions = {
   encoder: code128,
   renderer: svgRenderer,
-  width: 2,
+  width: 1.2,
   height: 100,
   fontSize: 20,
   margins: 16,

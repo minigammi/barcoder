@@ -1,0 +1,9 @@
+.ProjectsMenu {
+  padding: 0.5rem 0;
+}
+
+@media print {
+  .ProjectsMenu {
+    display: none;
+  }
+}
